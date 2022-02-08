@@ -29,11 +29,11 @@ function worker(arr) {
 
 function makeWork(arrOfArr, func) {
   let max = func(arrOfArr[0]);
-  let min = func(arrOfArr[0]);
+
   for (i = 1; i < arrOfArr.length; i++) {
     if (max < func(arrOfArr[i])) {
       max = func(arrOfArr[i]);
-    } 
+    }
   }
   return max;
 }
@@ -42,14 +42,14 @@ function makeWork(arrOfArr, func) {
 // Задание 3
 function worker2(arr) {
   let razn = 0;
-  let min = worker(arr[0]);
-  let max = worker(arr[0]);
-  for (let i =0 ; i < arr.length; i++) {
-    if (min > worker(arr[i])) {
-      min = worker(arr[i]);
-    } else if (max < worker(arr[i])) {
-      max = worker(arr[i]);
-    } 
+  let min = arr[0];
+  let max = arr[0];
+  for (let i = 0; i < arr.length; i++) {
+    if (min > arr[i]) {
+      min = arr[i];
+    } else if (max < arr[i]) {
+      max = arr[i];
+    }
   }
   razn = max - min;
   return Math.abs(razn);
