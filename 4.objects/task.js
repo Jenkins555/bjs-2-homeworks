@@ -1,5 +1,7 @@
 function Student(name, gender, age) {
-  // Ваш код
+  this.name = name;
+  this.gender = gender;
+  this.age = age;
 
 }
 let student3 = new Student("Михаил", "male", 20);
@@ -28,20 +30,21 @@ Student.prototype.addMarks = function (...mark) {
   }
 }
 
-Student.prototype.getAverage = function () {
-  let sum = 0;
-  for (let i = 0; i < this.marks.length; i++) {
-    sum = + this.marks[i];
-  }
-  return sum / this.marks.length;
+Student.prototype.getAverage = function (marks) {
+  var sum = 0;
+for(var i = 0; i < this.marks.length; i++) {
+    sum = (sum + this.marks[i]) / this.marks.length;;
+}
+return sum;
   ///среднее арифметическое оценок студента
 }
 
 Student.prototype.exclude = function (reason) {
   delete Student['subject'];
   delete Student['marks'];
-  Student['exclude'] = "reason";
+  Student['exclude'] = reason;
 
   ///Исключить студента и установить причину
 }
+
 // ваш код для остальных методов
