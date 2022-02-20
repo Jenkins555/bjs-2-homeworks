@@ -30,21 +30,19 @@ Student.prototype.addMarks = function (...mark) {
   }
 }
 
-Student.prototype.getAverage = function (marks) {
-  var sum = 0;
-for(var i = 0; i < this.marks.length; i++) {
-    sum = (sum + this.marks[i]) / this.marks.length;;
-}
-return sum;
+Student.prototype.getAverage = function () {
+
+const sum = this.marks.reduce((total,amount)=> total + amount);
+x = (sum / this.marks.length).toFixed(4) ;
+return +x;
   ///среднее арифметическое оценок студента
 }
 
 Student.prototype.exclude = function (reason) {
-  delete Student['subject'];
-  delete Student['marks'];
-  Student['exclude'] = reason;
+  delete this.subject;
+  delete this.marks;
+  this.excluded = reason;
 
   ///Исключить студента и установить причину
 }
 
-// ваш код для остальных методов
