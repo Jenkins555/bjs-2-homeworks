@@ -65,41 +65,45 @@ class DetectiveBook extends Book {
         super(...args);
         this.type = "detective";
     }
-} 
+}
 
 class Library {
-    constructor(name = "" , books = []){
-    this.name = name;
-      this.books = books;
+    constructor(name = "", books = []) {
+        this.name = name;
+        this.books = books;
     }
-    addBook(book){
-        if (this.state > 30) {
-      this.books.push(book);
-        }  
-    }
-    findBookBy(type, value) { ///поиск
-        for(let i = 0; i < this.books.length; i++) {
-            if (this.books[i].keys === type && this.books[i].values === value) {
-                return this.books[i];
-            } else {
-                return null;
-            }
+    addBook(book) {
+        if (book.state > 30) {
+            this.books.push(book);
         }
     }
-    
-    
+    findBookBy(type, value) { ///поиск
+        for (let i = 0; i < this.books.length; i++) {
+            if (this.books[i][type] === value) {
+                return this.books[i];
+            }
+        }
+
+        return null;
+
+
+    }
+
+
     giveBookByName(bookName) {
-        let obj = this.books.find((o, i)=>{
-            if (o.name[i] === bookName) {
-              this.books.splice(o.name[i]);
-              return o.name[i];
-            } else {
-                return null;
-            };
+        let x = this.books.find((name, i) => {
+            if (this.books[i][name] === bookName) {
+                delete books[i][name];
+                return x;
+            }
+            return null;
+
         });
-            
+
     }
 }
+
+
 
 
 
