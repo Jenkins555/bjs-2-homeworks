@@ -33,8 +33,8 @@ Student.prototype.addMarks = function (...mark) {
 Student.prototype.getAverage = function () {
 
 const sum = this.marks.reduce((total,amount)=> total + amount);
-x = (sum / this.marks.length).toFixed(4) ;
-return +x;
+let x = (sum / this.marks.length) ;
+return x;
   ///среднее арифметическое оценок студента
 }
 
