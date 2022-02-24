@@ -13,7 +13,7 @@ function validateCount(value) {
     }
 }
 
-
+    
 
 
 class Triangle {
