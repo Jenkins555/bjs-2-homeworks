@@ -91,16 +91,21 @@ class Library {
 
 
     giveBookByName(bookName) {
-        let x = this.books.find((book, i) => {
-            if (book.name === bookName) {
-                this.books.splice(0, 1);
-                console.log(book.name);
-            } else {
-                return null;
-            }
-        });
+        let x = this.books.find((book) => book.name === bookName);
+        console.log(x);
+        let i = this.books.indexOf(x);
+        console.log(i);
+        console.log(bookName);
+        if (x >= 0) {
+            this.books.splice(i, 1);
+           return x;
+            
+        } else if (x === -1){
+            return null;
+        }
 
-        /// this.books.splice(i,1);
+
+
 
     }
 }
