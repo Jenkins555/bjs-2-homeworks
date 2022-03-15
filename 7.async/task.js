@@ -1,21 +1,21 @@
 class AlarmClock {
-    constructor(alarmCollection = [], timerId) {
-        this.alarmCollection = alarmCollection,
-            this.timerId = timerId
+    constructor() {
+        this.alarmCollection = [],
+        this.timerId = null
     }
 
 
     addClock(hm, func, id) {
-        hm = "";
-        if (id !== true) {
+
+        if (!id) {
             throw new Error('Нет параметра id');
         }
-        let x = this.alarmCollection.find((elem) => { elem.idCall === id });
-        if (x === true) {
+        let call = this.alarmCollection.find(elem => elem.idCall === id);
+        if (call) {
             console.log("Такой звонок уже существует");
             return id;
         } else {
-            let newObj = { time: hm, callback: func(), idCall: id };
+            let newObj = { time: hm, callback, idCall: id };
             this.alarmCollection.push(newObj);
         }
 
@@ -24,47 +24,48 @@ class AlarmClock {
 
     removeClock(id) {
         let len1 = this.alarmCollection.length
-        let x = this.alarmCollection.filter((elem, i) => {
-            if (elem.idCall === id) {
-                this.alarmCollection.splice(i, 1)
-            }
-        });
-        let len2 = this.alarmCollection.length - x.length;
-        if (len1 === len2) {
-            return false;
-        } else {
-            return true;
-        }
-
+        let callback = this.alarmCollection.filter(elem => elem.idCall !== id );
+        this.alarmCollection = callback;
+        return len1 === this.alarmCollection.length;
     }
 
     getCurrentFormattedTime() {
-        let now = new Date();
-        let hh = String(now.getHours());
-        let mm = String(now.getMinutes());
-        return hh + ":" + mm;
+        let time = new Date().toLocaleTimeString("ru-Ru", {
+            hour: "2-digit",
+            minute: "2-digit",
+          });
+        return time;
     }
 
 
     start() {
-        let checkClock = AlarmClock.bind(timerId);
-        if(timerId === 0) {
-          timerId = setInterval();
-        }
-       
+      let checkClock;
+
+        if(!timerId) {
+          timerId = setInterval( this.alarmCollection.forEach(time => 
+            time === this.getCurrentFormattedTime()),1000);
+            checkClock();
+        }   
         
+       checkClock = this.newObj.forEach(item => 
+       newObj.time === this.getCurrentFormattedTime);
+       return newObj.callback();
     }
 
     stop() {
-
+     if (this.timerId) {
+         clearInterval(this.timerId);
+         delete this.timerId;
+     }
     }
 
     printAlarms() {
-
+        this.alarmCollection.forEach(item => console.log(item.time + "" + item.idCall));
     }
 
     clearAlarms () {
-
+       this.stop()
+       this.alarmCollection = [];
     }
 
 
