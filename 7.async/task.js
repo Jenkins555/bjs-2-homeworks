@@ -15,7 +15,7 @@ class AlarmClock {
             console.log("Такой звонок уже существует");
             return id;
         } else {
-            let newObj = { time: hm, callback, idCall: id };
+            let newObj = { time: hm, func, idCall: id };
             this.alarmCollection.push(newObj);
         }
 
@@ -39,16 +39,20 @@ class AlarmClock {
 
 
     start() {
-      let checkClock;
-
-        if(!timerId) {
-          timerId = setInterval( this.alarmCollection.forEach(time => 
+        
+     function checkClock() {
+      AlarmClock.bind(checkClock, newObj);
+        this.newObj.forEach(item => 
+            item.time === this.getCurrentFormattedTime);
+     }
+      
+        if(!this.timerId) {
+          this.timerId = setInterval( this.alarmCollection.forEach(time => 
             time === this.getCurrentFormattedTime()),1000);
             checkClock();
         }   
         
-       checkClock = this.newObj.forEach(item => 
-       newObj.time === this.getCurrentFormattedTime);
+      
        return newObj.callback();
     }
 
