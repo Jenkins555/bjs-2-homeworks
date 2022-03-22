@@ -10,10 +10,9 @@ class AlarmClock {
         if (!id) {
             throw new Error('Нет параметра id');
         }
-        let call = this.alarmCollection.find(elem => elem.idCall === id);
-        if (call) {
-            console.log("Такой звонок уже существует");
-            return id;
+        let call = this.alarmCollection.some(elem => elem.idCall === id);
+        if (call===true) {
+            console.error("Такой звонок уже существует");
         } else {
             let newObj = { time: hm, func, idCall: id };
             this.alarmCollection.push(newObj);
@@ -24,9 +23,9 @@ class AlarmClock {
 
     removeClock(id) {
         let len1 = this.alarmCollection.length
-        let callback = this.alarmCollection.filter(elem => elem.idCall !== id );
-        this.alarmCollection = callback;
-        return len1 === this.alarmCollection.length;
+        let newArr = this.alarmCollection.filter(elem => elem.idCall !== id );
+        this.alarmCollection = newArr;
+        return len1 !== this.alarmCollection.length;
     }
 
     getCurrentFormattedTime() {
@@ -40,20 +39,21 @@ class AlarmClock {
 
     start() {
         
-     function checkClock() {
-      AlarmClock.bind(checkClock, newObj);
-        this.newObj.forEach(item => 
+     
+      this.addClock.bind( this.addClock, this.newObj);
+        this.alarmCollection.forEach(item => 
             item.time === this.getCurrentFormattedTime);
+    
+     if(this.timerId) {
+         return;
      }
       
-        if(!this.timerId) {
-          this.timerId = setInterval( this.alarmCollection.forEach(time => 
+    this.timerId = setInterval( this.alarmCollection.forEach(time => 
             time === this.getCurrentFormattedTime()),1000);
-            checkClock();
-        }   
+            
         
       
-       return newObj.callback();
+       return ;
     }
 
     stop() {
