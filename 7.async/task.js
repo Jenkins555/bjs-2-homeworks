@@ -38,28 +38,21 @@ class AlarmClock {
 
 
     start() {
-        
-     
-      this.addClock.bind( this.addClock, this.newObj);
-        this.alarmCollection.forEach(item => 
-            item.time === this.getCurrentFormattedTime);
-    
-     if(this.timerId) {
+       if(this.timerId) {
          return;
-     }
-      
-    this.timerId = setInterval( this.alarmCollection.forEach(time => 
-            time === this.getCurrentFormattedTime()),1000);
-            
-        
-      
-       return ;
+     } 
+     this.timerId = this.alarmCollection.forEach(item => {
+        item.time === this.getCurrentFormattedTime();
+        setInterval(this.addClock,1000);  
+     });
+     
     }
+    
 
     stop() {
      if (this.timerId) {
          clearInterval(this.timerId);
-         delete this.timerId;
+         this.timerId = null;
      }
     }
 
