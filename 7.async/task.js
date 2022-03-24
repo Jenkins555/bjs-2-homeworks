@@ -10,12 +10,10 @@ class AlarmClock {
         if (!id) {
             throw new Error('Нет параметра id');
         }
-        let call = this.alarmCollection.some(elem => elem.idCall === id);
-        if (call===true) {
-            console.error("Такой звонок уже существует");
+        if (this.alarmCollection.some(elem => elem.idCall === id)){
+             console.error("Такой звонок уже существует");
         } else {
-            let newObj = { time: hm, func, idCall: id };
-            this.alarmCollection.push(newObj);
+            this.alarmCollection.push({time , func , idCall});
         }
 
 
@@ -40,15 +38,15 @@ class AlarmClock {
     start() {
        if(this.timerId) {
          return;
-     } 
-     this.timerId = this.alarmCollection.forEach(item => {
-        item.time === this.getCurrentFormattedTime();
-        setInterval(this.addClock,1000);  
-     });
-     
+       }
+
+     this.timerId = setInterval(this.alarmCollection.forEach(elem => elem.time === this.getCurrentFormattedTime()) => {
+       this.alarmCollection.func()
+     }, 1000);
+
     }
     
-
+    
     stop() {
      if (this.timerId) {
          clearInterval(this.timerId);
@@ -57,7 +55,7 @@ class AlarmClock {
     }
 
     printAlarms() {
-        this.alarmCollection.forEach(item => console.log(item.time + "" + item.idCall));
+        this.alarmCollection.forEach(item => console.log(item.time + "" ));
     }
 
     clearAlarms () {
