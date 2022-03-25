@@ -40,10 +40,15 @@ class AlarmClock {
          return;
        }
 
-     this.timerId = setInterval(this.alarmCollection.forEach(elem => elem.time === this.getCurrentFormattedTime()) => {
-       this.alarmCollection.func()
-     }, 1000);
 
+       this.timerId = setInterval(this.alarmCollection.forEach(elem) => {
+        if(elem => elem.time === this.getCurrentFormattedTime()) {
+            elem.func();
+        }
+
+       });
+    
+     
     }
     
     
